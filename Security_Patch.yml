@@ -1,0 +1,21 @@
+---
+- name: Apply Security Patch to RHEL Server
+  hosts: TestVM
+  tasks:
+    - name: Subscribe to RHEL repositories
+      redhat.satellite.subscription:
+        login: admin
+        password: redhat
+        satellite_url: https://10.50.0.18/rpc/api
+        organization: DirectLineGroup
+        activation_key: TEST_RHEL_8_AK
+        auto_attach: yes  # Automatically attach available subscriptions
+      register: subscription_result
+
+    - name: List applicable security updates
+      redhat.satellite.rhsm_info:
+        login: admin
+        password: redhat
+        satellite_url: https://10.50.0.18/rpc/api
+        list_available: security
+      register: security_updates_result
