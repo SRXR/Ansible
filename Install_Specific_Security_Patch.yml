@@ -10,7 +10,7 @@
       become: yes
 
     - name: Install a specific security updates
-      command: yum update --advisory=RHSA-2020:1178
+      command: yum update --cve CVE-2018-17828
       register: security_updates
       changed_when: false
 
