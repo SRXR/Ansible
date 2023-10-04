@@ -5,6 +5,6 @@
   tasks:
     - name: List available security patches from Satellite
       command: satellite-patches --security --list
-      delegate_to: 10.50.0.18
+      delegate_to: 10.50.0.21
       register: available_patches
       ignore_errors: yes
