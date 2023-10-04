@@ -1,0 +1,19 @@
+---
+- name: Check for available security patches
+  hosts: TestVM
+  gather_facts: yes
+  tasks:
+    - name: Update the package cache
+      yum:
+        name: '*'
+        state: latest
+      become: yes
+
+    - name: List available security updates
+      command: yum list-sec
+      register: security_updates
+      changed_when: false
+
+    - name: Display available security updates
+      debug:
+        var: security_updates.stdout_lines
