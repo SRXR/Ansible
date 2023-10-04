@@ -1,0 +1,10 @@
+---
+- name: Collect and Apply Security Patches
+  hosts: TestVM
+  become: yes
+  tasks:
+    - name: List available security patches from Satellite
+      command: satellite-patches --security --list
+      delegate_to: https://10.50.0.18
+      register: available_patches
+      ignore_errors: yes
