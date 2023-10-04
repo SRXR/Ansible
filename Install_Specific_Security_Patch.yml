@@ -1,0 +1,19 @@
+---
+- name: Install security patches
+  hosts: TestVM
+  gather_facts: yes
+  tasks:
+    - name: Update the package cache
+      yum:
+        name: '*'
+        state: latest
+      become: yes
+
+    - name: Install a specific security updates
+      command: yum update --advisory=RHSA-2020:1178
+      register: security_updates
+      changed_when: false
+
+    - name: Display installed security updates
+      debug:
+        var: security_updates.stdout_lines
