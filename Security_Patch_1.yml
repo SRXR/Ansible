@@ -1,5 +1,5 @@
 ---
-- name: Collect and Apply Security Patches
+- name: Collect Security Patches
   hosts: TestVM
   become: yes
   tasks:
