@@ -10,7 +10,7 @@
       become: yes
 
     - name: List available security updates
-      command: yum updateinfo list security all
+      command: yum updateinfo list cves all
       register: security_updates
       changed_when: false
 
